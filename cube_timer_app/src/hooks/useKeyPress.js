@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react'
 
 const useKeyPress = () => {
-  // Стан для збереження натисканих клавіш у вигляді рядка
-  const [pressedKeys, setPressedKeys] = useState('')
+  // Стан для збереження натисканих клавіш
+  const [pressedKeys, setPressedKeys] = useState([])
 
   // Функція, яка буде викликана при натисканні клавіші
   const handleKeyDown = ({ key }) => {
-    if (!pressedKeys.includes(key)) {
-      setPressedKeys(prevKeys => prevKeys + key)
-    }
+    setPressedKeys(prevKeys => {
+      if (!prevKeys.includes(key)) {
+        return [...prevKeys, key]
+      }
+      return prevKeys
+    })
   }
 
   // Функція, яка буде викликана при відпусканні клавіші
-  const handleKeyUp = () => {
-    setPressedKeys('')
+  const handleKeyUp = ({ key }) => {
+    // Видаляємо клавішу з масиву
+    setPressedKeys(prevKeys => [...prevKeys, key])
   }
 
   // Ефект для встановлення слухачів подій при монтажі компоненту
@@ -26,7 +30,7 @@ const useKeyPress = () => {
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('keyup', handleKeyUp)
     }
-  }, []) // Пустий масив означає, що ефект буде викликаний тільки при монтажі та розмонтажі компоненту
+  }, [])
 
   return pressedKeys
 }

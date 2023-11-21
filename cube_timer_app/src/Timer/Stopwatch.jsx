@@ -1,47 +1,78 @@
 import { useEffect, useState } from 'react'
 import useKeyPress from '../hooks/useKeyPress'
+import styles from './Stopwatch.modules.scss'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectResults,
+  setStopwatchResult,
+} from '../redux/slices/stopwatchSlice'
 
 const Stopwatch = () => {
-  const spaceKeyReleased = useKeyPress('')
-  console.log(spaceKeyReleased + '1')
-  console.log(spaceKeyReleased.length > 0)
-
-  const [time, setTime] = useState(0)
-
   const [isRunning, setIsRunning] = useState(false)
+  const [time, setTime] = useState({
+    milliseconds: 0,
+    seconds: 0,
+    minutes: 0,
+    hours: 0,
+  })
+  const dispatch = useDispatch()
+  const results = useSelector(selectResults)
+  const spaceKeyPressed = useKeyPress(' ')
 
   useEffect(() => {
     let intervalId
 
     if (isRunning) {
-      intervalId = setInterval(() => setTime(time + 1), 10)
+      intervalId = setInterval(() => {
+        setTime(prevTime => {
+          const newMilliseconds = prevTime.milliseconds + 10
+          const newSeconds =
+            prevTime.seconds + Math.floor(newMilliseconds / 1000)
+          const newMinutes = prevTime.minutes + Math.floor(newSeconds / 60)
+          const newHours = prevTime.hours + Math.floor(newMinutes / 60)
+
+          return {
+            milliseconds: newMilliseconds % 1000,
+            seconds: newSeconds % 60,
+            minutes: newMinutes % 60,
+            hours: newHours,
+          }
+        })
+      }, 10)
     }
+    if (!isRunning && time.milliseconds > 0) {
+      dispatch(setStopwatchResult(time))
+    }
+
     return () => clearInterval(intervalId)
-  }, [isRunning, time])
+  }, [isRunning, dispatch, time])
 
-  const hours = Math.floor(time / 360000)
-  const minutes = Math.floor((time % 360000) / 6000)
-  const seconds = Math.floor((time % 6000) / 100)
-  const milliseconds = time % 100
+  useEffect(() => {
+    // Викликається при зміні spaceKeyPressed
+    if (spaceKeyPressed.length > 0) {
+      setIsRunning(prevIsRunning => !prevIsRunning)
+    }
+  }, [spaceKeyPressed])
 
-  const startAndStop = () => {
-    setIsRunning(!isRunning)
-  }
-
+  // console.log(time)
   const reset = () => {
-    setTime(0)
+    setTime({
+      milliseconds: 0,
+      seconds: 0,
+      minutes: 0,
+      hours: 0,
+    })
   }
+
   return (
-    <div className="stopwatch-container">
-      <p className="stopwatch-time">
-        {hours}:{minutes.toString().padStart(2, '0')}:
-        {seconds.toString().padStart(2, '0')}:
-        {milliseconds.toString().padStart(2, '0')}
-      </p>
+    <div className={styles.stopwatchContainer}>
+      <h1 className={styles.stopwatchTime}>
+        {time.hours}:{time.minutes.toString().padStart(2, '0')}:
+        {time.seconds.toString().padStart(2, '0')}.
+        {time.milliseconds.toString().padStart(3, '0').slice(0, 2)}
+      </h1>
+
       <div className="stopwatch-buttons">
-        <button className="stopwatch-button" onClick={startAndStop}>
-          {isRunning ? 'Stop' : 'Start'}
-        </button>
         <button className="stopwatch-button" onClick={reset}>
           Reset
         </button>

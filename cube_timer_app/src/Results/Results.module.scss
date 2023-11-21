@@ -17,23 +17,25 @@
       display: none;
     }
     overflow: scroll;
-
     table,
     th,
     td {
       border-collapse: collapse;
 
       border: 1px solid black;
-      padding: 7px;
+      padding: 10px;
       caption {
         font-size: large;
         font-weight: 700;
+        border: 2px dashed black;
+        border-bottom: none;
+        padding: 15px;
       }
     }
   }
 
   .result__best {
-    padding: 2rem;
+    padding: 1rem;
     th,
     td {
       padding: 10px;
