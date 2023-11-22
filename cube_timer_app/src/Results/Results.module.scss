@@ -1,32 +1,33 @@
 .result_flex {
   display: flex;
   justify-content: space-around;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   background-color: #455161;
   padding: 0 0px 10px 0px;
-  height: 87vh;
+  border-radius: 10px;
 
-  .result__stats {
-    width: 100%;
-  }
   .result__scroll {
     scrollbar-width: none; /* Firefox 64 */
     -ms-overflow-style: none; /* Internet Explorer 11 */
     &::-webkit-scrollbar {
       display: none;
     }
+    padding: 1rem;
+    height: 37vh;
     overflow: scroll;
     table,
     th,
     td {
+      width: 100%;
       border-collapse: collapse;
-      border: 1px solid black;
+      // border: 1px solid black;
       padding: 12px;
       caption {
+        text-align: left;
         font-size: large;
         font-weight: 700;
-        border: 2px dashed black;
+        // border: 2px dashed black;
         border-bottom: none;
         padding: 10px;
       }

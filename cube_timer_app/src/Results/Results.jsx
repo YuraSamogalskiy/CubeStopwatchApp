@@ -28,9 +28,6 @@ const Results = () => {
 
   return (
     <div className={styles.result_flex}>
-      <div className={styles.result__stats}>
-        <h1>statistic</h1>
-      </div>
       <div className={styles.result__scroll}>
         <table>
           <caption>solve {`${results.length}/${results.length}`}</caption>
@@ -57,6 +54,9 @@ const Results = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className={styles.result__stats}>
+        <h1>statistic</h1>
       </div>
       <div className={styles.result__best}>
         <table>
@@ -104,3 +104,5 @@ const Results = () => {
 }
 
 export default Results
+
+//TODO рефактор result__best в BestResult.jsx (вже створено)
