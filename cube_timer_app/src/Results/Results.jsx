@@ -4,7 +4,27 @@ import { selectResults } from '../redux/slices/stopwatchSlice'
 
 const Results = () => {
   const results = useSelector(selectResults)
-  console.log(results)
+  const lastResults =
+    results[results.length - 1] === undefined
+      ? '-'
+      : results[results.length - 1]
+  // const bestResult = results.sort((a, b) => {
+  //     if (a.milliseconds !== b.milliseconds) {
+  //         return a.milliseconds - b.milliseconds
+  //     }
+  //     if (a.seconds !== b.seconds) {
+  //
+  //         return a.seconds - b.seconds
+  //     }
+  // if (a.minutes !== b.minutes) {
+  //
+  //     return a.minutes - b.minutes
+  // }
+  // if (a.hours !== b.hours) {
+  //     return a.hours - b.hours
+  // }
+  // })
+  // console.log(bestResult)
 
   return (
     <div className={styles.result_flex}>
@@ -23,10 +43,10 @@ const Results = () => {
             </tr>
             {results.map((result, idx) => (
               <tr key={idx}>
-                <td>{++idx}</td>
+                <td>{results.length - idx}</td>
                 <td>
                   {result.minutes > 0
-                    ? `${result.minutes}:${result.seconds}.${
+                    ? `${result.minutes}:0${result.seconds}.${
                         result.milliseconds / 10
                       }`
                     : `${result.seconds}.${result.milliseconds / 10}`}{' '}
@@ -49,7 +69,11 @@ const Results = () => {
 
             <tr>
               <th>Time</th>
-              <td>19</td>
+              <td>
+                {lastResults.milliseconds === undefined
+                  ? '-'
+                  : lastResults.seconds + ':' + lastResults.milliseconds / 10}
+              </td>
               <td>Male</td>
             </tr>
             <tr>

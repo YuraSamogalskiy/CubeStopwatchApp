@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 const useKeyPress = () => {
   // Стан для збереження натисканих клавіш
-  const [pressedKeys, setPressedKeys] = useState([])
+  const [pressedKeys, setPressedKeys] = useState([' ', ' '])
 
   // Функція, яка буде викликана при натисканні клавіші
   const handleKeyDown = ({ key }) => {
@@ -17,7 +17,7 @@ const useKeyPress = () => {
   // Функція, яка буде викликана при відпусканні клавіші
   const handleKeyUp = ({ key }) => {
     // Видаляємо клавішу з масиву
-    setPressedKeys(prevKeys => [...prevKeys, key])
+    setPressedKeys(prevKeys => [...prevKeys])
   }
 
   // Ефект для встановлення слухачів подій при монтажі компоненту

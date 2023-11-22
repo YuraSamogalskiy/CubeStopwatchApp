@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react'
 import useKeyPress from '../hooks/useKeyPress'
 import styles from './Stopwatch.modules.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  selectResults,
-  setStopwatchResult,
-} from '../redux/slices/stopwatchSlice'
+import { useDispatch } from 'react-redux'
+import { setStopwatchResult } from '../redux/slices/stopwatchSlice'
 
 const Stopwatch = () => {
   const [isRunning, setIsRunning] = useState(false)
@@ -16,8 +13,7 @@ const Stopwatch = () => {
     hours: 0,
   })
   const dispatch = useDispatch()
-  const results = useSelector(selectResults)
-  const spaceKeyPressed = useKeyPress(' ')
+  const spaceKeyPressed = useKeyPress()
 
   useEffect(() => {
     let intervalId
@@ -49,12 +45,12 @@ const Stopwatch = () => {
 
   useEffect(() => {
     // Викликається при зміні spaceKeyPressed
-    if (spaceKeyPressed.length > 0) {
+    if (spaceKeyPressed) {
       setIsRunning(prevIsRunning => !prevIsRunning)
     }
   }, [spaceKeyPressed])
 
-  // console.log(time)
+  console.log(spaceKeyPressed)
   const reset = () => {
     setTime({
       milliseconds: 0,
