@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import useKeyPress from '../hooks/useKeyPress'
-import styles from './Stopwatch.modules.scss'
+import styles from './Stopwatch.module.scss'
 import { useDispatch } from 'react-redux'
 import { setStopwatchResult } from '../redux/slices/stopwatchSlice'
 
@@ -39,26 +39,26 @@ const Stopwatch = () => {
     if (!isRunning && time.milliseconds > 0) {
       dispatch(setStopwatchResult(time))
     }
-
     return () => clearInterval(intervalId)
   }, [isRunning, dispatch, time])
 
+  console.log(time)
+
   useEffect(() => {
-    // Викликається при зміні spaceKeyPressed
     if (spaceKeyPressed) {
-      setIsRunning(prevIsRunning => !prevIsRunning)
+      setIsRunning(prevIsRunning => {
+        if (!prevIsRunning) {
+          setTime({
+            milliseconds: 0,
+            seconds: 0,
+            minutes: 0,
+            hours: 0,
+          })
+        }
+        return !prevIsRunning
+      })
     }
   }, [spaceKeyPressed])
-
-  console.log(spaceKeyPressed)
-  const reset = () => {
-    setTime({
-      milliseconds: 0,
-      seconds: 0,
-      minutes: 0,
-      hours: 0,
-    })
-  }
 
   return (
     <div className={styles.stopwatchContainer}>
@@ -67,12 +67,6 @@ const Stopwatch = () => {
         {time.seconds.toString().padStart(2, '0')}.
         {time.milliseconds.toString().padStart(3, '0').slice(0, 2)}
       </h1>
-
-      <div className="stopwatch-buttons">
-        <button className="stopwatch-button" onClick={reset}>
-          Reset
-        </button>
-      </div>
     </div>
   )
 }

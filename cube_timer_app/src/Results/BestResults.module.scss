@@ -3,16 +3,17 @@
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  background-color: #455161;
+  background-color: #12141C;
   padding: 0 0px 10px 0px;
   border-radius: 10px;
 
   .result__best {
     padding: 1rem;
+    color: #959596;
     th,
     td {
       padding: 10px;
-      border-bottom: 2.5px dashed #252525;
+      border-bottom: 2.5px dashed #62210f;
     }
   }
 }

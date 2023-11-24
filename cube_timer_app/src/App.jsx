@@ -1,9 +1,13 @@
+import { useDispatch } from 'react-redux'
 import './App.css'
 import BestResults from './Results/BestResults'
 import Results from './Results/Results'
 import Stopwatch from './Timer/Stopwatch'
+import { deleteAllResults } from './redux/slices/stopwatchSlice'
 
 function App() {
+  const dispatch = useDispatch()
+
   return (
     <div className="app">
       <header className="app-header">
@@ -11,7 +15,14 @@ function App() {
       </header>
       <main className="app-main">
         <div className="app-left-column">
-          <h1>Statistic</h1>
+          <div className="app-left-column-up">
+            <h1>
+              Statistic
+              <button onClick={() => dispatch(deleteAllResults())}>
+                Delete
+              </button>
+            </h1>
+          </div>
           <Results />
           <h1>Statistic</h1>
         </div>

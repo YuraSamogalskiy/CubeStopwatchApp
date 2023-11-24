@@ -5,13 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #112d49;
-  /* overflow: hidden; */
-
-  /* height: 100%; */
+  background-color: #12141c;
+  overflow: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media (max-width: 1024px) {
+  body {
+    overflow: scroll;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    overflow: scroll;
+  }
 }

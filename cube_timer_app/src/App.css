@@ -5,7 +5,7 @@
 }
 
 .app-header {
-  background-color: #333;
+  background-color: #161b21;
   color: white;
   padding: 10px;
   text-align: center;
@@ -19,11 +19,9 @@
 
 .app-left-column {
   flex: 0 0 auto;
-  /* width: 40%; */
-  background-color: #f0f0f0;
+  background-color: #b5431f;
   border-radius: 10px;
   padding: 4px;
-  /* height: 100%; */
 }
 
 .app-right-column {
@@ -37,8 +35,7 @@
 
 .app-footer {
   margin-top: auto;
-  /* width: 100%; */
-  background-color: #e0e0e0;
+  background-color: #b5431f;
   padding: 4px;
   border-radius: 10px;
 }
@@ -48,21 +45,48 @@ h1 {
   padding: 10px;
 }
 
+.app-left-column-up {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 @media (max-width: 1024px) {
   .app-main {
-    flex-direction: column-reverse;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row; /* Switch back to row layout for larger screens */
   }
 
   .app-left-column,
   .app-right-column {
-    flex-basis: 100%;
-
-    align-self: unset;
-    padding: 1rem;
+    flex-basis: auto; /* Allow content to determine width */
+    align-self: stretch; /* Stretch columns to full height */
+    /* padding: 1rem; */
   }
+
   .app-left-column {
     width: 230px;
+  }
+  .app-right-column {
+    padding: 10rem 0 0 2rem;
+  }
+}
+@media (max-width: 768px) {
+  .app-main {
+    display: flex;
+    flex-direction: column-reverse; /* Switch back to row layout for larger screens */
+    justify-content: center;
+  }
+
+  .app-left-column,
+  .app-right-column {
+    flex-basis: auto;
+    align-self: stretch;
+  }
+
+  .app-left-column {
+    width: 230px;
+  }
+  .app-right-column {
+    padding: 10rem 0 0 0;
   }
 }

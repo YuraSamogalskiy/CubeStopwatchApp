@@ -1,0 +1,15 @@
+.stopwatchContainer {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: auto;
+
+  .stopwatchTime {
+    color: aliceblue;
+  }
+  .stopwatchButtons {
+    button {
+      background-color: aqua;
+    }
+  }
+}
