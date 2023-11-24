@@ -3,6 +3,7 @@ import useKeyPress from '../hooks/useKeyPress'
 import styles from './Stopwatch.module.scss'
 import { useDispatch } from 'react-redux'
 import { setStopwatchResult } from '../redux/slices/stopwatchSlice'
+import createTimeWithId from '../utils/createTimeWithId'
 
 const Stopwatch = () => {
   const [isRunning, setIsRunning] = useState(false)
@@ -37,12 +38,11 @@ const Stopwatch = () => {
       }, 10)
     }
     if (!isRunning && time.milliseconds > 0) {
-      dispatch(setStopwatchResult(time))
+      const timeForId = createTimeWithId(time)
+      dispatch(setStopwatchResult(timeForId))
     }
     return () => clearInterval(intervalId)
   }, [isRunning, dispatch, time])
-
-  console.log(time)
 
   useEffect(() => {
     if (spaceKeyPressed) {

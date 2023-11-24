@@ -16,12 +16,8 @@ function App() {
       <main className="app-main">
         <div className="app-left-column">
           <div className="app-left-column-up">
-            <h1>
-              Statistic
-              <button onClick={() => dispatch(deleteAllResults())}>
-                Delete
-              </button>
-            </h1>
+            <h1>Statistic</h1>
+            <button onClick={() => dispatch(deleteAllResults())}>Delete</button>
           </div>
           <Results />
           <h1>Statistic</h1>

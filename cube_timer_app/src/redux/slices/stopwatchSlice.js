@@ -12,9 +12,13 @@ const stopwatchSlice = createSlice({
     deleteAllResults: state => {
       return initialState
     },
+    deleteResult: (state, action) => {
+      return state.filter(time => time.id !== action.payload)
+    },
   },
 })
 
-export const { setStopwatchResult, deleteAllResults } = stopwatchSlice.actions
+export const { setStopwatchResult, deleteAllResults, deleteResult } =
+  stopwatchSlice.actions
 export const selectResults = state => state.results
 export default stopwatchSlice.reducer

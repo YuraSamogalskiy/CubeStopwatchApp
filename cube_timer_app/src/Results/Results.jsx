@@ -1,12 +1,20 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './Results.module.scss'
-import { selectResults } from '../redux/slices/stopwatchSlice'
+import { deleteResult, selectResults } from '../redux/slices/stopwatchSlice'
 import { VscEmptyWindow } from 'react-icons/vsc'
+import { MdDeleteOutline } from 'react-icons/md'
+import { FaRegStar } from 'react-icons/fa'
 
 const Results = () => {
   const results = useSelector(selectResults)
   const reversedResults = [...results].reverse()
+  const dispatch = useDispatch()
   // console.log(reversedResults[0].milliseconds)
+  console.log(results)
+
+  const handleDeleteTime = TimeId => {
+    dispatch(deleteResult(TimeId))
+  }
   return (
     <div className={styles.result_flex}>
       {reversedResults.length === 0 ? (
@@ -33,8 +41,21 @@ const Results = () => {
                         }`
                       : `${result.seconds}.${result.milliseconds / 10}`}{' '}
                   </td>
-                  <td>Male</td>
-                  <td>Male</td>
+                  <td>DNF</td>
+                  <td>+2</td>
+                  <td>
+                    <h3>
+                      <FaRegStar />
+                    </h3>
+                  </td>
+                  <td>
+                    <h3>
+                      <MdDeleteOutline
+                        className={styles.deleteIcon}
+                        onClick={() => handleDeleteTime(result.id)}
+                      />
+                    </h3>
+                  </td>
                 </tr>
               ))}
             </tbody>

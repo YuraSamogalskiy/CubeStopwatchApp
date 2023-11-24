@@ -6,7 +6,6 @@
   background-color: #12141c;
   padding: 0 0 10px 0px;
   border-radius: 10px;
-  width: 30vh;
 
   .nonResults {
     display: flex;
@@ -24,7 +23,7 @@
     &::-webkit-scrollbar {
       display: none;
     }
-    padding: 1rem;
+
     height: 65vh;
     overflow: scroll;
     table,
@@ -33,24 +32,35 @@
       border-collapse: collapse;
       color: #959596;
       padding: 12px;
-      caption {
-        h3 {
-          margin: 0;
+      font-size: large;
+      transition: transform 0.3s ease;
+
+      .deleteIcon {
+        cursor: pointer;
+        &:hover {
+          color: red;
         }
+      }
+      caption {
         text-align: left;
         font-size: large;
         font-weight: 700;
         border-bottom: none;
         padding: 10px;
-        padding-top: 0;
+        padding-top: 10px;
       }
       tbody {
         border-top: 2.5px dashed #62210f;
 
         .resultTime {
+          font-weight: 700;
           color: green;
         }
       }
     }
   }
+}
+
+h3 {
+  margin: 0;
 }
