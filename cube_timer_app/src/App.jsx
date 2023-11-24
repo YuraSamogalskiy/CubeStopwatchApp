@@ -1,4 +1,5 @@
 import './App.css'
+import BestResults from './Results/BestResults'
 import Results from './Results/Results'
 import Stopwatch from './Timer/Stopwatch'
 
@@ -10,12 +11,14 @@ function App() {
       </header>
       <main className="app-main">
         <div className="app-left-column">
-          <h1>Book library app</h1>
+          <h1>Statistic</h1>
+          <Results />
+          <h1>Statistic</h1>
         </div>
         <div className="app-right-column">
           <Stopwatch />
           <footer className="app-footer">
-            <Results />
+            <BestResults />
           </footer>
         </div>
       </main>
@@ -26,3 +29,4 @@ function App() {
 export default App
 
 //TODO рефактор header
+//TODO move all result--scroll in other components
