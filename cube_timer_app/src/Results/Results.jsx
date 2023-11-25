@@ -1,9 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux'
 import styles from './Results.module.scss'
-import { deleteResult, selectResults } from '../redux/slices/stopwatchSlice'
+import {
+  deleteResult,
+  dnfResult,
+  favoriteResult,
+  plusTwoResult,
+  selectResults,
+} from '../redux/slices/stopwatchSlice'
 import { VscEmptyWindow } from 'react-icons/vsc'
 import { MdDeleteOutline } from 'react-icons/md'
 import { FaRegStar } from 'react-icons/fa'
+import { FaStar } from 'react-icons/fa'
 
 const Results = () => {
   const results = useSelector(selectResults)
@@ -15,6 +22,17 @@ const Results = () => {
   const handleDeleteTime = TimeId => {
     dispatch(deleteResult(TimeId))
   }
+  const handleFavoriteTime = TimeId => {
+    dispatch(favoriteResult(TimeId))
+  }
+  const handleDnfTime = TimeId => {
+    dispatch(dnfResult(TimeId))
+  }
+  const handlePlusTwo = TimeId => {
+    dispatch(plusTwoResult(TimeId))
+  }
+
+  const timeJSX = 
   return (
     <div className={styles.result_flex}>
       {reversedResults.length === 0 ? (
@@ -34,19 +52,23 @@ const Results = () => {
               {reversedResults.map((result, idx) => (
                 <tr key={idx}>
                   <td>{results.length - idx}.</td>
-                  <td className={styles.resultTime}>
-                    {result.minutes > 0
-                      ? `${result.minutes}:0${result.seconds}.${
-                          result.milliseconds / 10
-                        }`
-                      : `${result.seconds}.${result.milliseconds / 10}`}{' '}
-                  </td>
-                  <td>DNF</td>
-                  <td>+2</td>
+                  {!result.isDNF || !result.isPlusTwo ? (
+                    <td className={styles.resultTime}>
+                      {result.minutes > 0
+                        ? `${result.minutes}:0${result.seconds}.${
+                            result.milliseconds / 10
+                          }`
+                        : `${result.seconds}.${result.milliseconds / 10}`}{' '}
+                    </td>
+                  ) : (
+                    <td className={styles.resultTime}>DNF</td>
+                  )}
+                  <td onClick={() => handleDnfTime(result.id)}>DNF</td>
+                  <td onClick={() => handlePlusTwo(result.id)}>+2</td>
                   <td>
-                    <h3>
-                      <FaRegStar />
-                    </h3>
+                    <span onClick={() => handleFavoriteTime(result.id)}>
+                      {result.isFavorite ? <FaStar /> : <FaRegStar />}
+                    </span>
                   </td>
                   <td>
                     <h3>

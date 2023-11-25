@@ -4,6 +4,8 @@ const createTimeWithId = time => {
   return {
     ...time,
     isFavorite: false,
+    isDNF: false,
+    isPlusTwo: false,
     id: uuidv4(),
   }
 }
