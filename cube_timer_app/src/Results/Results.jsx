@@ -16,8 +16,6 @@ const Results = () => {
   const results = useSelector(selectResults)
   const reversedResults = [...results].reverse()
   const dispatch = useDispatch()
-  // console.log(reversedResults[0].milliseconds)
-  console.log(results)
 
   const handleDeleteTime = TimeId => {
     dispatch(deleteResult(TimeId))
@@ -31,8 +29,16 @@ const Results = () => {
   const handlePlusTwo = TimeId => {
     dispatch(plusTwoResult(TimeId))
   }
-
-  const timeJSX = 
+  let newRes = results.map(item => {
+    return {
+      milliseconds: item.milliseconds / results.length,
+      seconds: item.seconds / results.length,
+      minutes: item.minutes / results.length,
+      hours: item.hours / results.length,
+    }
+  })
+  console.log(results)
+  console.log(newRes)
   return (
     <div className={styles.result_flex}>
       {reversedResults.length === 0 ? (
@@ -52,22 +58,62 @@ const Results = () => {
               {reversedResults.map((result, idx) => (
                 <tr key={idx}>
                   <td>{results.length - idx}.</td>
-                  {!result.isDNF || !result.isPlusTwo ? (
-                    <td className={styles.resultTime}>
-                      {result.minutes > 0
-                        ? `${result.minutes}:0${result.seconds}.${
-                            result.milliseconds / 10
-                          }`
-                        : `${result.seconds}.${result.milliseconds / 10}`}{' '}
-                    </td>
-                  ) : (
+                  {result.isDNF ? (
                     <td className={styles.resultTime}>DNF</td>
+                  ) : (
+                    <>
+                      {!result.isPlusTwo ? (
+                        <td className={styles.resultTime}>
+                          {result.minutes > 0
+                            ? `${result.minutes}:0${result.seconds}.${
+                                result.milliseconds / 10
+                              }`
+                            : `${result.seconds}.${result.milliseconds / 10}`}
+                        </td>
+                      ) : (
+                        <td className={styles.resultTime}>
+                          {result.minutes > 0
+                            ? `${result.minutes}:0${result.seconds + 2}.${
+                                result.milliseconds / 10
+                              }+`
+                            : `${result.seconds + 2}.${
+                                result.milliseconds / 10
+                              }+`}
+                        </td>
+                      )}
+                    </>
                   )}
-                  <td onClick={() => handleDnfTime(result.id)}>DNF</td>
-                  <td onClick={() => handlePlusTwo(result.id)}>+2</td>
+
+                  <td onClick={() => handleDnfTime(result.id)}>
+                    <span
+                      className={
+                        result.isDNF ? styles.dnfFalse : styles.dnfTrue
+                      }
+                    >
+                      DNF
+                    </span>
+                  </td>
+                  <td onClick={() => handlePlusTwo(result.id)}>
+                    <span
+                      className={
+                        result.isPlusTwo
+                          ? styles.plusTwoFalse
+                          : styles.plusTwoTrue
+                      }
+                    >
+                      +2
+                    </span>
+                  </td>
                   <td>
-                    <span onClick={() => handleFavoriteTime(result.id)}>
-                      {result.isFavorite ? <FaStar /> : <FaRegStar />}
+                    <span
+                      className={styles.favoriteIcon}
+                      onClick={() => handleFavoriteTime(result.id)}
+                    >
+                      {result.isFavorite ? (
+                        <FaStar style={{ color: 'yellow' }} />
+                      ) : (
+                        <FaRegStar />
+                      )}
                     </span>
                   </td>
                   <td>
@@ -89,5 +135,3 @@ const Results = () => {
 }
 
 export default Results
-
-//TODO рефактор result__best в BestResult.jsx (вже створено) YES

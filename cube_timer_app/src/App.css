@@ -8,13 +8,15 @@
   background-color: #161b21;
   color: white;
   padding: 10px;
+  /* width: 100%; */
   text-align: center;
 }
 
 .app-main {
-  flex: 1;
+  /* flex: 1; */
   display: flex;
   padding: 2rem;
+  padding-top: 4rem;
 }
 
 .app-left-column {
@@ -32,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 0 0 2rem;
+  padding: 5rem 0 0 2rem;
 }
 
 .app-footer {
@@ -51,8 +53,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* justify-content: space-between; */
-  /* align-items: flex-start; */
 }
 button {
   padding: 10px;
@@ -60,6 +60,7 @@ button {
   border: #b5431f 1.4px solid;
   border-radius: 5px;
   color: #b5431f;
+  transition: 0.3s ease;
 }
 
 button:hover {
@@ -87,6 +88,24 @@ button:hover {
     padding: 10rem 0 0 2rem;
   }
 }
+@media (max-width: 1544px) {
+  .app-main {
+    flex-direction: row; /* Switch back to row layout for larger screens */
+  }
+
+  .app-left-column,
+  .app-right-column {
+    flex-basis: auto;
+    align-self: stretch;
+  }
+
+  .app-left-column {
+    width: 50%;
+  }
+  .app-right-column {
+    padding: 10rem 0 0 2rem;
+  }
+}
 @media (max-width: 768px) {
   .app-main {
     display: flex;
@@ -101,6 +120,7 @@ button:hover {
   }
 
   .app-left-column {
+    margin-top: 2rem;
     width: 100%;
   }
   .app-right-column {

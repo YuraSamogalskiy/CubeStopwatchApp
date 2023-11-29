@@ -1,9 +1,13 @@
+$background_color: #12141c;
+$text_color: #959596;
+$border_color: #62210f;
+
 .result_flex {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  background-color: #12141c;
+  background-color: $background_color;
   padding: 0 0 10px 0px;
   border-radius: 10px;
 
@@ -13,7 +17,7 @@
     height: 65vh;
 
     h1 {
-      color: #959596;
+      color: $text_color;
     }
   }
 
@@ -23,39 +27,86 @@
     &::-webkit-scrollbar {
       display: none;
     }
-
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
     height: 65vh;
+    width: 100%;
     overflow: scroll;
-    table,
-    th,
-    td {
+
+    table {
       border-collapse: collapse;
-      color: #959596;
+      color: $text_color;
       padding: 12px;
       font-size: large;
-      transition: transform 0.3s ease;
+      caption {
+        padding: 12px;
+      }
+    }
 
+    th,
+    td {
+      // transition: transform 0.3s ease;
+      padding: 15px;
       .deleteIcon {
+        transition: 0.3s;
+
         cursor: pointer;
         &:hover {
           color: red;
         }
       }
-      caption {
-        text-align: left;
-        font-size: large;
-        font-weight: 700;
-        border-bottom: none;
-        padding: 10px;
-        padding-top: 10px;
-      }
-      tbody {
-        border-top: 2.5px dashed #62210f;
-
-        .resultTime {
-          font-weight: 700;
-          color: green;
+      .favoriteIcon {
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: yellow;
         }
+      }
+      .plusTwoTrue {
+        color: $text_color;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover {
+          color: red;
+        }
+      }
+      .plusTwoFalse {
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: $text_color;
+        }
+        color: red;
+        // border-bottom: red 1px solid;
+      }
+
+      .dnfTrue {
+        color: $text_color;
+        transition: 0.3s;
+        cursor: pointer;
+        &:hover {
+          color: red;
+        }
+      }
+      .dnfFalse {
+        cursor: pointer;
+        transition: 0.3s;
+        &:hover {
+          color: $text_color;
+        }
+        color: red;
+        // border-bottom: red 1px solid;
+      }
+    }
+    tbody {
+      border-top: 2.5px dashed $border_color;
+      .resultTime {
+        font-weight: 700;
+        color: green;
+        text-shadow: 5px 5px 5px rgba(0, 6, 1, 6.25);
+        width: 150px;
+        border-right: 2.5px dashed $border_color;
       }
     }
   }

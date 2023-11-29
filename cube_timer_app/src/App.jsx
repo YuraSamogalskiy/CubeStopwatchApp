@@ -17,7 +17,9 @@ function App() {
         <div className="app-left-column">
           <div className="app-left-column-up">
             <h1>Statistic</h1>
-            <button onClick={() => dispatch(deleteAllResults())}>Delete</button>
+            <button onClick={() => dispatch(deleteAllResults())}>
+              Delete Session
+            </button>
           </div>
           <Results />
           <h1>Statistic</h1>

@@ -6,10 +6,44 @@
 
   .stopwatchTime {
     color: aliceblue;
+    // font-size: 120px;
   }
   .stopwatchButtons {
     button {
       background-color: aqua;
     }
+  }
+}
+
+// @media (min-width: 2024px) {
+//   .stopwatchTime {
+//     // color: aliceblue;
+//     font-size: 150px;
+//   }
+// }
+
+@media (max-width: 3024px) {
+  .stopwatchTime {
+    // color: aliceblue;
+    font-size: 120px;
+  }
+}
+@media (max-width: 1524px) {
+  .stopwatchTime {
+    // color: aliceblue;
+    font-size: 100px;
+  }
+}
+@media (max-width: 1224px) {
+  .stopwatchTime {
+    color: aliceblue;
+    font-size: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .stopwatchTime {
+    color: aliceblue;
+    font-size: 60px;
+    margin-bottom: 15rem;
   }
 }
