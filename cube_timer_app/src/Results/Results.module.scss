@@ -10,11 +10,11 @@ $border_color: #62210f;
   background-color: $background_color;
   padding: 0 0 10px 0px;
   border-radius: 10px;
-
+  // padding: 1rem;
   .nonResults {
     display: flex;
     align-items: center;
-    height: 65vh;
+    height: 60vh;
 
     h1 {
       color: $text_color;
@@ -30,9 +30,10 @@ $border_color: #62210f;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    height: 65vh;
+    height: 60vh;
     width: 100%;
     overflow: scroll;
+    // padding: 1rem;
 
     table {
       border-collapse: collapse;
@@ -47,7 +48,7 @@ $border_color: #62210f;
     th,
     td {
       // transition: transform 0.3s ease;
-      padding: 15px;
+      padding: 12px;
       .deleteIcon {
         transition: 0.3s;
 

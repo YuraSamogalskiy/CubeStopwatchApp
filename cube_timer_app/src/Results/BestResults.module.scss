@@ -3,7 +3,7 @@
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  background-color: #12141C;
+  background-color: #12141c;
   padding: 0 0px 10px 0px;
   border-radius: 10px;
 
@@ -14,6 +14,19 @@
     td {
       padding: 10px;
       border-bottom: 2.5px dashed #62210f;
+    }
+
+    .bestResult {
+      color: green;
+      text-align: center;
+    }
+    .worstResult {
+      color: red;
+      text-align: center;
+    }
+    .currentResult {
+      color: orange;
+      text-align: center;
     }
   }
 }

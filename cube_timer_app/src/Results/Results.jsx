@@ -29,16 +29,15 @@ const Results = () => {
   const handlePlusTwo = TimeId => {
     dispatch(plusTwoResult(TimeId))
   }
-  let newRes = results.map(item => {
-    return {
-      milliseconds: item.milliseconds / results.length,
-      seconds: item.seconds / results.length,
-      minutes: item.minutes / results.length,
-      hours: item.hours / results.length,
-    }
-  })
-  console.log(results)
-  console.log(newRes)
+  // let newRes = results.map(item => {
+  //   return {
+  //     milliseconds: item.milliseconds / results.length,
+  //     seconds: item.seconds / results.length,
+  //     minutes: item.minutes / results.length,
+  //     hours: item.hours / results.length,
+  //   }
+  // })
+
   return (
     <div className={styles.result_flex}>
       {reversedResults.length === 0 ? (
