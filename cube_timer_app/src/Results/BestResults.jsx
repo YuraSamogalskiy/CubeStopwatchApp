@@ -1,9 +1,11 @@
 import { useSelector } from 'react-redux'
 import { selectResults } from '../redux/slices/stopwatchSlice.js'
 import styles from './BestResults.module.scss'
+import { meanOf3 } from '../utils/meanOfTime.js'
 
 const BestResults = () => {
   const results = useSelector(selectResults)
+  const reverseResults = [...results].reverse()
   const lastResults =
     results[results.length - 1] === undefined
       ? '-'
@@ -20,8 +22,10 @@ const BestResults = () => {
 
   const worstResult = sortedResult[0]
   const bestResult = sortedResult[sortedResult.length - 1]
-  console.log(sortedResult)
-  console.log(worstResult)
+
+  // console.log(reverseResults)
+  console.log(meanOf3(reverseResults))
+  // console.log(worstResult)
   return (
     <div className={styles.result_flex}>
       <div className={styles.result__best}>

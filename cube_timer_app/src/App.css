@@ -8,24 +8,13 @@
   background-color: #161b21;
   color: white;
   padding: 10px;
-  /* width: 100%; */
   text-align: center;
 }
 
 .app-main {
-  /* flex: 1; */
   display: flex;
   padding: 2rem;
   padding-top: 1.5rem;
-}
-
-.app-left-column {
-  flex: 0 0 auto;
-  background-color: #b5431f;
-  border-radius: 10px;
-  padding: 4px;
-  width: 20%;
-  height: 100%;
 }
 
 .app-right-column {
@@ -34,14 +23,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5rem 0 0 2rem;
+  padding: 5rem 0 0 0rem;
 }
 
 .app-footer {
+  display: flex;
+  flex-direction: row;
   margin-top: auto;
   background-color: #b5431f;
-  padding: 4px;
-  border-radius: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 h1 {
@@ -49,12 +40,12 @@ h1 {
   padding: 10px;
 }
 
-.app-left-column-up {
+/* .app-left-column-up {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-button {
+} */
+/* button {
   padding: 10px;
   background-color: #161b21;
   border: #b5431f 1.4px solid;
@@ -67,63 +58,49 @@ button:hover {
   background-color: #b5431f;
   color: #161b21;
   border: #161b21 1.4px solid;
-}
+} */
 
 @media (max-width: 1024px) {
   .app-main {
-    flex-direction: row; /* Switch back to row layout for larger screens */
+    flex-direction: row;
+    padding: 2rem;
   }
 
-  .app-left-column,
-  .app-right-column {
-    flex-basis: auto; /* Allow content to determine width */
-    align-self: stretch; /* Stretch columns to full height */
-    /* padding: 1rem; */
-  }
-
-  .app-left-column {
-    width: 50%;
-  }
   .app-right-column {
     padding: 10rem 0 0 2rem;
   }
 }
+
 @media (max-width: 1544px) {
   .app-main {
-    flex-direction: row; /* Switch back to row layout for larger screens */
+    flex-direction: row;
+    padding: 2rem;
   }
 
-  .app-left-column,
   .app-right-column {
-    flex-basis: auto;
-    align-self: stretch;
+    padding: 2rem 0 0 0rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-
-  .app-left-column {
-    width: 50%;
-  }
-  .app-right-column {
-    padding: 10rem 0 0 2rem;
+  .app-footer {
   }
 }
+
 @media (max-width: 768px) {
   .app-main {
     display: flex;
-    flex-direction: column-reverse; /* Switch back to row layout for larger screens */
+    flex-direction: column-reverse;
     justify-content: center;
   }
 
-  .app-left-column,
-  .app-right-column {
-    flex-basis: auto;
-    align-self: stretch;
-  }
-
-  .app-left-column {
-    margin-top: 2rem;
-    width: 100%;
-  }
   .app-right-column {
     padding: 10rem 0 0 0;
+  }
+  .app-footer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column-reverse;
   }
 }

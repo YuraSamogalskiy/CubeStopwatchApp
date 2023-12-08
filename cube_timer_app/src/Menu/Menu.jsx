@@ -2,10 +2,10 @@ import styles from './Menu.module.scss'
 const Menu = () => {
   return (
     <div className={styles.menu__block}>
-      <div className={styles.menu_nav}>a</div>
-      <div className={styles.menu_nav}>a</div>
-      <div className={styles.menu_nav}>a</div>
-      <div className={styles.menu_nav}>a</div>
+      <a className={styles.menu_nav}>All Result</a>
+      <a className={styles.menu_nav}>a</a>
+      <a className={styles.menu_nav}>a</a>
+      <a className={styles.menu_nav}>a</a>
       {/* <div className={styles.menu_nav}>a</div> */}
     </div>
   )

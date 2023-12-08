@@ -3,11 +3,11 @@ import './App.css'
 import BestResults from './Results/BestResults'
 import Results from './Results/Results'
 import Stopwatch from './Timer/Stopwatch'
-import { deleteAllResults } from './redux/slices/stopwatchSlice'
-import Menu from './Menu/Menu'
+// import { deleteAllResults } from './redux/slices/stopwatchSlice'
+// import Menu from './Menu/Menu'
 
 function App() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   return (
     <div className="app">
@@ -15,19 +15,10 @@ function App() {
         <h1>My App Header</h1>
       </header>
       <main className="app-main">
-        <div className="app-left-column">
-          <Menu />
-          <Results />
-          <div className="app-left-column-up">
-            <h1>Statistic</h1>
-            <button onClick={() => dispatch(deleteAllResults())}>
-              Delete Session
-            </button>
-          </div>
-        </div>
         <div className="app-right-column">
           <Stopwatch />
           <footer className="app-footer">
+            <Results />
             <BestResults />
           </footer>
         </div>

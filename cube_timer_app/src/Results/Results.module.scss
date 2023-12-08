@@ -3,14 +3,10 @@ $text_color: #959596;
 $border_color: #62210f;
 
 .result_flex {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
   background-color: $background_color;
-  padding: 0 0 10px 0px;
-  border-radius: 10px;
-  // padding: 1rem;
+  padding: 15px 0 15px 0px;
+  border-radius: 5px;
+
   .nonResults {
     display: flex;
     align-items: center;
@@ -27,28 +23,32 @@ $border_color: #62210f;
     &::-webkit-scrollbar {
       display: none;
     }
+    padding-bottom: 10px;
     display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 60vh;
-    width: 100%;
+    height: 35vh;
     overflow: scroll;
-    // padding: 1rem;
 
     table {
       border-collapse: collapse;
       color: $text_color;
       padding: 12px;
       font-size: large;
+
       caption {
         padding: 12px;
+
+        .caption__flex {
+          display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+        }
       }
     }
 
     th,
     td {
-      // transition: transform 0.3s ease;
       padding: 12px;
+
       .deleteIcon {
         transition: 0.3s;
 
@@ -57,6 +57,7 @@ $border_color: #62210f;
           color: red;
         }
       }
+
       .favoriteIcon {
         cursor: pointer;
         transition: 0.3s;
@@ -64,6 +65,7 @@ $border_color: #62210f;
           color: yellow;
         }
       }
+
       .plusTwoTrue {
         color: $text_color;
         transition: 0.3s;
@@ -72,6 +74,7 @@ $border_color: #62210f;
           color: red;
         }
       }
+
       .plusTwoFalse {
         cursor: pointer;
         transition: 0.3s;
@@ -90,6 +93,7 @@ $border_color: #62210f;
           color: red;
         }
       }
+
       .dnfFalse {
         cursor: pointer;
         transition: 0.3s;
@@ -97,11 +101,12 @@ $border_color: #62210f;
           color: $text_color;
         }
         color: red;
-        // border-bottom: red 1px solid;
       }
     }
+
     tbody {
       border-top: 2.5px dashed $border_color;
+
       .resultTime {
         font-weight: 700;
         color: green;
@@ -115,4 +120,24 @@ $border_color: #62210f;
 
 h3 {
   margin: 0;
+}
+
+@media (max-width: 1544px) {
+  .result_flex {
+    height: 35vh;
+  }
+  .result__scroll {
+  }
+}
+@media (max-width: 1024px) {
+  .result_flex {
+    height: 35vh;
+  }
+}
+@media (max-width: 768px) {
+  .result_flex {
+    height: 40vh;
+  }
+  .result__scroll {
+  }
 }
