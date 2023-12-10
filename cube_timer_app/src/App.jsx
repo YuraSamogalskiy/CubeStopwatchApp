@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux'
 import './App.css'
 import BestResults from './Results/BestResults'
 import Results from './Results/Results'
@@ -13,6 +12,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>My App Header</h1>
+        <input type="color" id="color" name="color" value="#3498db"></input>
       </header>
       <main className="app-main">
         <div className="app-right-column">

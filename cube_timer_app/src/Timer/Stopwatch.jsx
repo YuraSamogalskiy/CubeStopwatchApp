@@ -60,10 +60,13 @@ const Stopwatch = () => {
     }
   }, [spaceKeyPressed])
 
+  console.log(time)
+
   return (
     <div className={styles.stopwatchContainer}>
       <h1 className={styles.stopwatchTime}>
-        {time.hours}:{time.minutes.toString().padStart(2, '0')}:
+        {time.hours.toString().padStart(2, '0')}:
+        {time.minutes.toString().padStart(2, '0')}:
         {time.seconds.toString().padStart(2, '0')}.
         {time.milliseconds.toString().padStart(3, '0').slice(0, 2)}
       </h1>

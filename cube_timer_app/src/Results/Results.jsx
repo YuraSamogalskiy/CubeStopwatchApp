@@ -58,9 +58,9 @@ const Results = () => {
                       {!result.isPlusTwo ? (
                         <td className={styles.resultTime}>
                           {result.minutes > 0
-                            ? `${result.minutes}:0${result.seconds}.${
-                                result.milliseconds / 10
-                              }`
+                            ? `${result.minutes}:${result.seconds
+                                .toString()
+                                .padStart(2, '0')}.${result.milliseconds / 10}`
                             : `${result.seconds}.${result.milliseconds / 10}`}
                         </td>
                       ) : (

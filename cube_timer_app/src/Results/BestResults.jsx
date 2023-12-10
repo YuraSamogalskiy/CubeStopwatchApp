@@ -23,9 +23,8 @@ const BestResults = () => {
   const worstResult = sortedResult[0]
   const bestResult = sortedResult[sortedResult.length - 1]
 
-  // console.log(reverseResults)
-  console.log(meanOf3(reverseResults))
-  // console.log(worstResult)
+  const mo3 = meanOf3(reverseResults)
+
   return (
     <div className={styles.result_flex}>
       <div className={styles.result__best}>
@@ -43,15 +42,19 @@ const BestResults = () => {
               <td className={styles.currentResult}>
                 {lastResults.milliseconds === undefined
                   ? '-'
-                  : lastResults.seconds + ':' + lastResults.milliseconds / 10}
+                  : lastResults.minutes > 0
+                  ? `${lastResults.minutes}:${lastResults.seconds
+                      .toString()
+                      .padStart(2, '0')}.${lastResults.milliseconds / 10}`
+                  : `${lastResults.seconds}.${lastResults.milliseconds / 10}`}
               </td>
               <td className={styles.bestResult}>
                 {sortedResult.length === 0 ? (
                   <span>-</span>
                 ) : bestResult.minutes > 0 ? (
-                  `${bestResult.minutes}:0${bestResult.seconds}.${
-                    bestResult.milliseconds / 10
-                  }`
+                  `${bestResult.minutes}:${bestResult.seconds
+                    .toString()
+                    .padStart(2, '0')}.${bestResult.milliseconds / 10}`
                 ) : (
                   `${bestResult.seconds}.${bestResult.milliseconds / 10}`
                 )}
@@ -61,9 +64,9 @@ const BestResults = () => {
                 {sortedResult.length === 0 ? (
                   <span>-</span>
                 ) : worstResult.minutes > 0 ? (
-                  `${worstResult.minutes}:0${worstResult.seconds}.${
-                    worstResult.milliseconds / 10
-                  }`
+                  `${worstResult.minutes}:${worstResult.seconds
+                    .toString()
+                    .padStart(2, '0')}.${worstResult.milliseconds / 10}`
                 ) : (
                   `${worstResult.seconds}.${worstResult.milliseconds / 10}`
                 )}
@@ -72,7 +75,13 @@ const BestResults = () => {
 
             <tr>
               <th>mo3</th>
-              <td>19</td>
+              <td className={styles.currentResult}>
+                {mo3.minutes > 0
+                  ? `${mo3.minutes}:${mo3.seconds
+                      .toString()
+                      .padStart(2, '0')}.${mo3.milliseconds / 10}`
+                  : `${mo3.seconds}.${mo3.milliseconds.toString().slice(0, 2)}`}
+              </td>
               <td>Female</td>
               <td>Female</td>
             </tr>

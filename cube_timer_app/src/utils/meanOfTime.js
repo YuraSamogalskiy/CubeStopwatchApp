@@ -2,23 +2,37 @@
 
 export const meanOfAll = () => {}
 export const meanOf3 = array => {
-  if (array.length === 0) return 0
+  // if (array.length === 0) return 0
   array = array.slice(0, 3)
-  let milliseconds = 0
-  let seconds = 0
-  let minutes = 0
-  let hours = 0
+
+  // console.log('------')
+
+  let totalMilliseconds = 0
+
   for (let i = 0; i < array.length; i++) {
-    milliseconds += array[i].milliseconds
-    seconds += array[i].seconds
-    minutes += array[i].minutes
-    hours += array[i].hours
+    totalMilliseconds += array[i].milliseconds
+    totalMilliseconds += array[i].seconds * 1000
+    totalMilliseconds += array[i].minutes * 60 * 1000
+    totalMilliseconds += array[i].hours * 60 * 60 * 1000
   }
+
+  let resultMilli = totalMilliseconds / 3
+  let resultHours = Math.floor(resultMilli / (60 * 60 * 1000))
+  resultMilli %= 60 * 60 * 1000
+
+  let resultMinutes = Math.floor(resultMilli / (60 * 1000))
+  resultMilli %= 60 * 1000
+
+  let resultSeconds = Math.floor(resultMilli / 1000)
+  resultMilli %= 1000
+
+  // console.log(Math.floor(resultMilli))
+
   return {
-    milliseconds: milliseconds / 3,
-    seconds: seconds / 3,
-    minutes: minutes / 3,
-    hours: hours / 3,
+    milliseconds: Math.floor(resultMilli),
+    seconds: resultSeconds,
+    minutes: resultMinutes,
+    hours: resultHours,
   }
 }
 export const ao5 = () => {}

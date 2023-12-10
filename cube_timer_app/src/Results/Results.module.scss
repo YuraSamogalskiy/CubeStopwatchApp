@@ -9,8 +9,10 @@ $border_color: #62210f;
 
   .nonResults {
     display: flex;
+    justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 100%;
+    width: 25rem;
 
     h1 {
       color: $text_color;
@@ -18,7 +20,11 @@ $border_color: #62210f;
   }
 
   .result__scroll {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     scrollbar-width: none;
+    width: 25rem;
     -ms-overflow-style: none;
     &::-webkit-scrollbar {
       display: none;
@@ -126,16 +132,23 @@ h3 {
   .result_flex {
     height: 35vh;
   }
-  .result__scroll {
+  .nonResults {
+    height: 35vh;
   }
 }
 @media (max-width: 1024px) {
   .result_flex {
     height: 35vh;
   }
+  .nonResults {
+    height: 35vh;
+  }
 }
 @media (max-width: 768px) {
   .result_flex {
+    height: 40vh;
+  }
+  .nonResults {
     height: 40vh;
   }
   .result__scroll {
