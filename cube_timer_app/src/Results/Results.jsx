@@ -11,6 +11,7 @@ import { VscEmptyWindow } from 'react-icons/vsc'
 import { MdDeleteOutline } from 'react-icons/md'
 import { FaRegStar } from 'react-icons/fa'
 import { FaStar } from 'react-icons/fa'
+import formatTime from '../utils/formatTime'
 
 const Results = () => {
   const results = useSelector(selectResults)
@@ -50,33 +51,7 @@ const Results = () => {
             <tbody>
               {reversedResults.map((result, idx) => (
                 <tr key={idx}>
-                  <td>{results.length - idx}.</td>
-                  {result.isDNF ? (
-                    <td className={styles.resultTime}>DNF</td>
-                  ) : (
-                    <>
-                      {!result.isPlusTwo ? (
-                        <td className={styles.resultTime}>
-                          {result.minutes > 0
-                            ? `${result.minutes}:${result.seconds
-                                .toString()
-                                .padStart(2, '0')}.${result.milliseconds / 10}`
-                            : `${result.seconds}.${result.milliseconds / 10}`}
-                        </td>
-                      ) : (
-                        <td className={styles.resultTime}>
-                          {result.minutes > 0
-                            ? `${result.minutes}:0${result.seconds + 2}.${
-                                result.milliseconds / 10
-                              }+`
-                            : `${result.seconds + 2}.${
-                                result.milliseconds / 10
-                              }+`}
-                        </td>
-                      )}
-                    </>
-                  )}
-
+                  <td className={styles.resultTime}>{formatTime(result)}</td>
                   <td onClick={() => handleDnfTime(result.id)}>
                     <span
                       className={

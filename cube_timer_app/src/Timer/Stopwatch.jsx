@@ -16,6 +16,12 @@ const Stopwatch = () => {
   const dispatch = useDispatch()
   const spaceKeyPressed = useKeyPress()
 
+  const isTimeNoZero =
+    time.milliseconds > 0 ||
+    time.seconds > 0 ||
+    time.minutes > 0 ||
+    time.hours > 0
+
   useEffect(() => {
     let intervalId
 
@@ -37,12 +43,12 @@ const Stopwatch = () => {
         })
       }, 10)
     }
-    if (!isRunning && time.milliseconds > 0) {
+    if (!isRunning && isTimeNoZero) {
       const timeForId = createTimeWithId(time)
       dispatch(setStopwatchResult(timeForId))
     }
     return () => clearInterval(intervalId)
-  }, [isRunning, dispatch, time])
+  }, [isRunning, dispatch, time, isTimeNoZero])
 
   useEffect(() => {
     if (spaceKeyPressed) {
@@ -59,8 +65,6 @@ const Stopwatch = () => {
       })
     }
   }, [spaceKeyPressed])
-
-  console.log(time)
 
   return (
     <div className={styles.stopwatchContainer}>

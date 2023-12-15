@@ -2,37 +2,34 @@
 
 export const meanOfAll = () => {}
 export const meanOf3 = array => {
-  // if (array.length === 0) return 0
-  array = array.slice(0, 3)
-
-  // console.log('------')
-
-  let totalMilliseconds = 0
-
-  for (let i = 0; i < array.length; i++) {
-    totalMilliseconds += array[i].milliseconds
-    totalMilliseconds += array[i].seconds * 1000
-    totalMilliseconds += array[i].minutes * 60 * 1000
-    totalMilliseconds += array[i].hours * 60 * 60 * 1000
+  if (array.length < 3) {
+    return {
+      milliseconds: 0,
+      seconds: 0,
+      minutes: 0,
+      hours: 0,
+    }
   }
 
-  let resultMilli = totalMilliseconds / 3
-  let resultHours = Math.floor(resultMilli / (60 * 60 * 1000))
-  resultMilli %= 60 * 60 * 1000
+  const slicedArray = array.slice(0, 3)
 
-  let resultMinutes = Math.floor(resultMilli / (60 * 1000))
-  resultMilli %= 60 * 1000
+  const totalMilliseconds = slicedArray.reduce((acc, item) => {
+    return (
+      acc +
+      item.hours * 3600000 +
+      item.minutes * 60000 +
+      item.seconds * 1000 +
+      item.milliseconds
+    )
+  }, 0)
 
-  let resultSeconds = Math.floor(resultMilli / 1000)
-  resultMilli %= 1000
-
-  // console.log(Math.floor(resultMilli))
+  const averageMilliseconds = totalMilliseconds / 3
 
   return {
-    milliseconds: Math.floor(resultMilli),
-    seconds: resultSeconds,
-    minutes: resultMinutes,
-    hours: resultHours,
+    milliseconds: averageMilliseconds % 1000,
+    seconds: Math.floor(averageMilliseconds / 1000) % 60,
+    minutes: Math.floor(averageMilliseconds / (60 * 1000)) % 60,
+    hours: Math.floor(averageMilliseconds / (60 * 60 * 1000)),
   }
 }
 export const ao5 = () => {}

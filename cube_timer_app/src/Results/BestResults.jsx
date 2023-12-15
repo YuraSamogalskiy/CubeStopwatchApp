@@ -1,11 +1,21 @@
-import { useSelector } from 'react-redux'
-import { selectResults } from '../redux/slices/stopwatchSlice.js'
+import { useDispatch, useSelector } from 'react-redux'
 import styles from './BestResults.module.scss'
 import { meanOf3 } from '../utils/meanOfTime.js'
+import {
+  selectMaxResult,
+  selectMinResult,
+  selectResults,
+} from '../redux/slices/stopwatchSlice.js'
+import { selectAverage, setMo3 } from '../redux/slices/averageSlice.js'
+import { useEffect } from 'react'
+import formatTime from '../utils/formatTime.js'
 
 const BestResults = () => {
   const results = useSelector(selectResults)
+  const max = useSelector(selectMaxResult)
+  const min = useSelector(selectMinResult)
   const reverseResults = [...results].reverse()
+  const dispatch = useDispatch()
   const lastResults =
     results[results.length - 1] === undefined
       ? '-'
@@ -22,8 +32,15 @@ const BestResults = () => {
 
   const worstResult = sortedResult[0]
   const bestResult = sortedResult[sortedResult.length - 1]
-
   const mo3 = meanOf3(reverseResults)
+
+  useEffect(() => {
+    const mo3 = meanOf3(reverseResults)
+
+    if (results.length > 0) {
+      dispatch(setMo3(mo3))
+    }
+  }, [dispatch, results])
 
   return (
     <div className={styles.result_flex}>
@@ -40,48 +57,15 @@ const BestResults = () => {
             <tr>
               <th>Time</th>
               <td className={styles.currentResult}>
-                {lastResults.milliseconds === undefined
-                  ? '-'
-                  : lastResults.minutes > 0
-                  ? `${lastResults.minutes}:${lastResults.seconds
-                      .toString()
-                      .padStart(2, '0')}.${lastResults.milliseconds / 10}`
-                  : `${lastResults.seconds}.${lastResults.milliseconds / 10}`}
+                {formatTime(lastResults)}
               </td>
-              <td className={styles.bestResult}>
-                {sortedResult.length === 0 ? (
-                  <span>-</span>
-                ) : bestResult.minutes > 0 ? (
-                  `${bestResult.minutes}:${bestResult.seconds
-                    .toString()
-                    .padStart(2, '0')}.${bestResult.milliseconds / 10}`
-                ) : (
-                  `${bestResult.seconds}.${bestResult.milliseconds / 10}`
-                )}
-              </td>
-              <td className={styles.worstResult}>
-                {' '}
-                {sortedResult.length === 0 ? (
-                  <span>-</span>
-                ) : worstResult.minutes > 0 ? (
-                  `${worstResult.minutes}:${worstResult.seconds
-                    .toString()
-                    .padStart(2, '0')}.${worstResult.milliseconds / 10}`
-                ) : (
-                  `${worstResult.seconds}.${worstResult.milliseconds / 10}`
-                )}
-              </td>
+              <td className={styles.bestResult}>{formatTime(min)}</td>
+              <td className={styles.worstResult}>{formatTime(max)}</td>
             </tr>
 
             <tr>
               <th>mo3</th>
-              <td className={styles.currentResult}>
-                {mo3.minutes > 0
-                  ? `${mo3.minutes}:${mo3.seconds
-                      .toString()
-                      .padStart(2, '0')}.${mo3.milliseconds / 10}`
-                  : `${mo3.seconds}.${mo3.milliseconds.toString().slice(0, 2)}`}
-              </td>
+              <td className={styles.currentResult}>{formatTime(mo3)}</td>
               <td>Female</td>
               <td>Female</td>
             </tr>
@@ -111,3 +95,6 @@ const BestResults = () => {
 }
 
 export default BestResults
+
+//TODO: винести форматування часу в окрему функцію
+//FIXME: можна зарефакторити ao5 / ao12 /mo3 і передвати пропси +
